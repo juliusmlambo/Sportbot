@@ -1,0 +1,46 @@
+﻿<!-- nav -->
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><img
+            src="https://polcglobal.com/wp-content/uploads/2021/06/POLC-LOGO-red.png"
+            width="100"
+            alt=""
+            class="d-inline-block align-middle mr-2"
+          /></a>
+       
+    </div>
+
+
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/" routerLinkActive="active"><span style="color:lightyellow;font-weight: bold;">Hi {{user.firstName}}</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<!-- main app container -->
+<div class="app-container" >
+   
+    <router-outlet></router-outlet>
+    <alert></alert>
+</div>
+
+<!-- credits -->
