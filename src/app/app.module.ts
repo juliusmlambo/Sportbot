@@ -11,7 +11,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
 import { HomeComponent } from './home';
-import { SportbotComponent } from './sportbot/sportbot.component';;
+import { SportbotComponent } from './sportbot/sportbot.component';
 
 
 
