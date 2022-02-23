@@ -227,6 +227,8 @@ ul {
 }
 </style>
 
+
+
 <div class="container-fluid h-100 text-dark">
     <div class="row justify-content-center align-items-center h-100 form-width">
       <div
@@ -508,7 +510,12 @@ ul {
           </div>
   
           <!---------------------------------------------------------------------------------------------------------------------------->
-          <br />
+
+          <input type="text" formControlName="latitude" [(ngModel)]="lat" style="border-style: none;visibility: hidden;">
+          <input type="text" formControlName="longitude" [(ngModel)]="lng" style="border-style: none;visibility: hidden;">
+
+          <!---------------------------------------------------------------------------------------------------------------------------->
+     
           <br />
           <p class="font-small">
             Date, Time and GPS Location will be recorded with your submission.
@@ -523,9 +530,7 @@ ul {
             style="font-size:14px!important"
             >Check your form for invalid inputs!</span
           >
-          <br />
-          lat:-{{lat}}<br>
-  lng-:{{lng}}
+        
 
           <div class="text-center">
             <button
@@ -543,8 +548,19 @@ ul {
           </div>
         </form>
 
+        <input (click)="toggleShowId()" type="radio" name="id" value="id">SA ID
+        <input type="text" *ngIf="isShown" class="row container-fluid" placeholder="SA ID number" id="divshow" >
+
+        <input (click)="toggleShowPass()" type="radio" name="id" value="passport">Passport
+        <input type="text" *ngIf="isShownPass" class="row container-fluid" placeholder="Passport number" id="divshow" >
+
+     
+   
+    
       </div>
     </div>
   </div>
+
+  
 
 

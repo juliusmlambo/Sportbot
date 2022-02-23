@@ -9,6 +9,7 @@ import {
   } from '@angular/forms';
 
 
+import { DatePipe } from '@angular/common';
 import { User } from '@app/_models';
 import { AccountService } from '@app/_services';
 
@@ -16,10 +17,16 @@ import { AccountService } from '@app/_services';
 export class HomeComponent {
     user: User;
     registerUser: FormGroup;
+    selectedValue = '0';
+
  
 
-    constructor(private accountService: AccountService,private router: Router, private fb: FormBuilder) {
+
+    constructor(public datepipe: DatePipe, private accountService: AccountService,private router: Router, private fb: FormBuilder) {
         this.user = this.accountService.userValue;
+        let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');
+  
+        console.log(currentDateTime);
     }
 
     navigateToSportbot() {
@@ -34,7 +41,6 @@ export class HomeComponent {
            Validators.maxLength(30)]),
     
           middlename: new FormControl(null, [
-            Validators.required, 
             Validators.maxLength(30)]),
     
           lastname: new FormControl(null, [
@@ -64,6 +70,12 @@ export class HomeComponent {
              
           tokenid: new FormControl(null, [
           Validators.maxLength(10)]),
+
+          longitude: new FormControl(null, [
+           ]),
+
+            latitude: new FormControl(null, [
+              ]),
         });
     
          this.getLocation();
@@ -114,4 +126,26 @@ export class HomeComponent {
         //Call API
       }
 
+
+      isShown: boolean = false ; // hidden by default
+      isShownPass: boolean = false ; // hidden by default
+
+
+      toggleShowId() {
+      
+      this.isShown = ! this.isShown;
+      
+      }
+
+      toggleShowPass() {
+      
+        this.isShownPass = ! this.isShownPass;
+        
+        }
+        
+
+
+       
+
+      
 }

@@ -5,6 +5,7 @@
               <div class="col-md-12">
                 <div class="row justify-content-center" style="width: 400px;
                 margin: 0 auto;">
+              
 
                     <img
         src="assets/images/sportbotlogo.jpg"
@@ -14,36 +15,37 @@
         style="border-radius:1px!important;margin:20px"
       />
 
+      <p class="font-small">
+        SportBot is a platform and a mechanism which wiil provide you with
+        lifetime annualty income. We therefore take IT security, your money
+        and data privacy legislation. It may therefore seem slightly tedious
+        to go through the entire registration process but this is to protect
+        you and your funds. The cool thing is you only have to do this once
+        and never again.
+      </p>
+    
+      <p class="font-small">
+        SportBot and other modules of POLC Global is a mechanism and fintech
+        company to perform automated wealth creation. It is an artificial
+        intelligence system which will use your wealth creation. Your personal
+        identifiable information is now fully controlled by you and only you
+        on this platform.
+      </p>
 
-                    <p class="font-small">
-                        SportBot is a platform and a mechanism which wiil provide you with
-                        lifetime annualty income. We therefore take IT security, your money
-                        and data privacy legislation. It may therefore seem slightly tedious
-                        to go through the entire registration process but this is to protect
-                        you and your funds. The cool thing is you only have to do this once
-                        and never again.
-                      </p>
-                    
-                      <p class="font-small">
-                        SportBot and other modules of POLC Global is a mechanism and fintech
-                        company to perform automated wealth creation. It is an artificial
-                        intelligence system which will use your wealth creation. Your personal
-                        identifiable information is now fully controlled by you and only you
-                        on this platform.
-                      </p>
-                    
-                      <input
-                              type="checkbox"
-                              id="agree"
-                              name="agree"
-                              value=""
-                              style="margin-right: 4px;
-                          position: relative;
-                          top: 8px;"
-                            />
-                            <label class="font-small"
-                              >understand and agree to this lifetime contract. </label
-                            ><br />
+      <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group form-check">
+                <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                <label for="acceptTerms" class="form-check-label mr-1">Accept Terms & Conditions</label>
+                <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+            </div>
+            
+            <div>
+                <button class="btn btn-primary mr-1">Submit</button>
+            </div>
+        </form>
+    </div>
+                 
                 </div>
               </div>
             </div>
