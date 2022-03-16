@@ -1,0 +1,18 @@
+{
+  "people": "Demo",
+  "data": {
+    "firstName": "Sean",
+    "middleName": "Anele",
+    "lastName": "Mlambo",
+    "nickName": "Mlambo",
+    "nationality": "Mlambo",
+    "idNumber": "12345",
+    "mobile": "0834325676",
+    "email": "julius@gmail.com",
+    "tokenId": "h66gfdf",
+    "latitude": "122223232",
+    "longitude": "382827827",
+    "date": "02/22/2022",
+    "time": "12:22:31"
+  }
+}

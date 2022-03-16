@@ -229,6 +229,7 @@ ul {
 
 
 
+
 <div class="container-fluid h-100 text-dark">
     <div class="row justify-content-center align-items-center h-100 form-width">
       <div
@@ -244,6 +245,7 @@ ul {
         <form
           [formGroup]="registerUser"
           (ngSubmit)="onSubmit(); navigateToSportbot()"
+          
         >
           <div class="form-group row" style="margin-bottom: 0;">
             <label
@@ -261,6 +263,7 @@ ul {
                 id="firstname"
                 class="form-control input-area font-small input-responsive"
                 formControlName="firstname"
+                [(ngModel)]="person.firstName"
               />
   
               <span
@@ -292,6 +295,7 @@ ul {
                 id="middlename"
                 class="form-control input-area font-small input-responsive"
                 formControlName="middlename"
+                [(ngModel)]="person.middleName"
               />
   
               <span
@@ -323,6 +327,7 @@ ul {
                 id="lastname"
                 class="form-control input-area font-small input-responsive"
                 formControlName="lastname"
+                [(ngModel)]="person.lastName"
               />
   
               <span
@@ -354,6 +359,7 @@ ul {
                 id="nickname"
                 class="form-control input-area font-small input-responsive"
                 formControlName="nickname"
+                [(ngModel)]="person.nickName"
               />
             </div>
           </div>
@@ -376,6 +382,7 @@ ul {
                 id="idnumber"
                 class="form-control input-area font-small input-responsive"
                 formControlName="idnumber"
+                [(ngModel)]="person.idNumber"
                 minlength="13"
                 maxlength="13"
               />
@@ -406,6 +413,7 @@ ul {
             <div class="col-sm-8">
               <select
                 formControlName="nationality"
+                [(ngModel)]="person.nationality"
                 class="select-area input-responsive"
               >
                 <option [ngValue]="null" disabled class="select-area">Select Country</option>
@@ -438,6 +446,7 @@ ul {
                 id="mobile"
                 class="form-control input-area font-small input-responsive"
                 formControlName="mobile"
+                [(ngModel)]="person.mobile"
                 minlength="10"
                 maxlength="10"
               />
@@ -472,6 +481,7 @@ ul {
                 id="email"
                 class="form-control input-area font-small input-responsive"
                 formControlName="email"
+                [(ngModel)]="person.email"
               />
               <span
                 *ngIf="
@@ -502,6 +512,7 @@ ul {
                 id="tokenid"
                 class="form-control input-area font-small input-responsive"
                 formControlName="tokenid"
+                [(ngModel)]="person.tokenId"
                 
               />
   
@@ -511,8 +522,62 @@ ul {
   
           <!---------------------------------------------------------------------------------------------------------------------------->
 
-          <input type="text" formControlName="latitude" [(ngModel)]="lat" style="border-style: none;visibility: hidden;">
-          <input type="text" formControlName="longitude" [(ngModel)]="lng" style="border-style: none;visibility: hidden;">
+          <input type="text" formControlName="latitude"  [(ngModel)]="person.latitude" [(ngModel)]="lat" style="border-style: none;visibility: hidden;">
+          <input type="text" formControlName="longitude" [(ngModel)]="lng" [(ngModel)]="person.longitude" style="border-style: none;visibility: hidden;">
+     
+          
+          <div class="form-group row" style="margin-bottom: 0;">
+            <label
+              for="date"
+              class="
+                col-sm-4 col-form-label col-form-label-sm
+                font-small
+                label-responsive
+              "
+              >date</label
+            >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                id="date"
+                class="form-control input-area font-small input-responsive"
+                formControlName="date"
+                [(ngModel)]="person.date"
+                
+              />
+  
+             
+            </div>
+          </div>
+  
+          <!---------------------------------------------------------------------------------------------------------------------------->
+
+          <div class="form-group row" style="margin-bottom: 0;">
+            <label
+              for="time"
+              class="
+                col-sm-4 col-form-label col-form-label-sm
+                font-small
+                label-responsive
+              "
+              >time</label
+            >
+            <div class="col-sm-8">
+              <input
+                type="text"
+                id="time"
+                class="form-control input-area font-small input-responsive"
+                formControlName="time"
+                [(ngModel)]="person.time"
+                
+              />
+  
+             
+            </div>
+          </div>
+  
+          <!---------------------------------------------------------------------------------------------------------------------------->
+          
 
           <!---------------------------------------------------------------------------------------------------------------------------->
      
@@ -540,6 +605,7 @@ ul {
                 justify-content-center
                 align-items-center
               "
+              (click)="addPerson()"
               [disabled]="!registerUser.valid"
               type="submit"
             >
@@ -548,15 +614,14 @@ ul {
           </div>
         </form>
 
-        <input (click)="toggleShowId()" type="radio" name="id" value="id">SA ID
+
+       <!--<input (click)="toggleShowId()" type="radio" name="id" value="id">SA ID
         <input type="text" *ngIf="isShown" class="row container-fluid" placeholder="SA ID number" id="divshow" >
 
         <input (click)="toggleShowPass()" type="radio" name="id" value="passport">Passport
         <input type="text" *ngIf="isShownPass" class="row container-fluid" placeholder="Passport number" id="divshow" >
-
-     
-   
-    
+--> 
+ 
       </div>
     </div>
   </div>

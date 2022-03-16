@@ -5,13 +5,14 @@ import {
     FormGroup,
     Validators,
     FormBuilder,
+    FormsModule ,
     MaxLengthValidator,
   } from '@angular/forms';
 
-
+ 
 import { DatePipe } from '@angular/common';
-import { User } from '@app/_models';
-import { AccountService } from '@app/_services';
+import { User, Person } from '@app/_models';
+import { AccountService, ApiService } from '@app/_services';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
@@ -19,21 +20,38 @@ export class HomeComponent {
     registerUser: FormGroup;
     selectedValue = '0';
 
- 
 
+    people:Person[];
+    person = new Person();
+    public currentDateTime;
+    date=new Date();
+    time=new Date();
+    
 
-    constructor(public datepipe: DatePipe, private accountService: AccountService,private router: Router, private fb: FormBuilder) {
+    constructor(public datepipe: DatePipe,
+     private accountService: AccountService,
+     private router: Router,
+     private fb: FormBuilder, 
+     private apiService:ApiService)
+        {
         this.user = this.accountService.userValue;
-        let currentDateTime =this.datepipe.transform((new Date), 'MM/dd/yyyy h:mm:ss');
+        let date =this.datepipe.transform((new Date), 'MM/dd/yyyy');
+        let time =this.datepipe.transform((new Date), 'HH:mm');
   
-        console.log(currentDateTime);
+        console.log(date);
+        console.log(time);
+
     }
+
+
 
     navigateToSportbot() {
         this.router.navigate(['/sportbot']);
       }
 
       ngOnInit(): void {
+
+        this.refreshPeople()
   
         this.registerUser = new FormGroup({
           firstname: new FormControl(null, [
@@ -57,6 +75,7 @@ export class HomeComponent {
             Validators.maxLength(13),
           ]),
           nationality: new FormControl(null, Validators.required),
+          
           mobile: new FormControl(null, [
             Validators.pattern("^((\\+27-?)|0)?[0-9]{10}$"),
             Validators.required,
@@ -76,6 +95,13 @@ export class HomeComponent {
 
             latitude: new FormControl(null, [
               ]),
+
+              date: new FormControl(null, [
+              ]),
+   
+              time: new FormControl(null, [
+                 ]),
+             
         });
     
          this.getLocation();
@@ -83,7 +109,7 @@ export class HomeComponent {
 
       onSubmit() {
         console.log(this.registerUser);
-        //this.registerUser.reset();
+        this.registerUser.reset();
       }
 
       countries = [
@@ -111,11 +137,10 @@ export class HomeComponent {
             "Longitude: " + position.coords.longitude);
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
-          console.log(this.lat);
-          console.log(this.lat);
+          
         }
       },
-        (error: PositionError) => console.log(error));
+        //(error: PositionError) => console.log(error));
     } else {
       alert("Geolocation is not supported by this browser.");
     }
@@ -129,18 +154,31 @@ export class HomeComponent {
 
       isShown: boolean = false ; // hidden by default
       isShownPass: boolean = false ; // hidden by default
-
-
       toggleShowId() {
-      
       this.isShown = ! this.isShown;
-      
       }
 
       toggleShowPass() {
-      
         this.isShownPass = ! this.isShownPass;
-        
+        }
+
+
+//talk to backend
+        refreshPeople() {
+          this.apiService.getPeople()
+            .subscribe(data => {
+              console.log(data)
+              this.people=data;
+            })      
+       
+        }
+
+        addPerson() {
+          this.apiService.addPerson(this.person)
+            .subscribe(data => {
+              console.log(data)
+              this.refreshPeople();
+            })      
         }
         
 

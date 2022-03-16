@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:4000'
+    apiUrl: 'http://160.119.142.236:52773/csp/development/save'
 };
 
 /*

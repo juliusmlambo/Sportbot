@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
     loading = false;
     submitted = false;
 
+    //confirm password
     
 
     constructor(
